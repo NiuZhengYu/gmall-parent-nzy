@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.niuzhengyu.gmall0826.publisher.mapper.OrderMapper">
+    <select id="selectOrderAmount" resultType="java.lang.Double" >
+        SELECT SUM(total_amount) order_amount FROM gmall0826_order_info WHERE create_date = #{date }
+    </select>
+    <select id="selectOrderAmountHour" resultMap="orderResultMap" >
+        SELECT create_hour, SUM(total_amount) order_amount FROM gmall0826_order_info WHERE create_date = #{date } GROUP BY create_hour
+    </select>
+    <resultMap id="orderResultMap" type="java.util.Map" autoMapping="true" >
+    </resultMap>
+</mapper>
